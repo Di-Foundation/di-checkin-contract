@@ -1,10 +1,11 @@
-import { readFileSync } from "node:fs";
+import { mkdtempSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { BrowserProvider, ContractFactory } from "ethers";
 import ganache from "ganache";
 import { beforeAll, beforeEach, describe, expect, it } from "vitest";
-import { compileDICheckIn, sha256Hex } from "../src/compile.js";
+import { assertCompilerVersion, compileDICheckIn, sha256Hex } from "../src/compile.js";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -39,6 +40,22 @@ describe("DICheckIn public release", () => {
       evmVersion: "shanghai",
       optimizer: { enabled: true, runs: 200 }
     });
+  });
+
+  it("rejects a compiler version other than the frozen release", () => {
+    expect(() => assertCompilerVersion("0.8.30+commit.73712a01.Emscripten.clang")).toThrow(
+      /Expected 0\.8\.31/
+    );
+  });
+
+  it("fails closed when a Solidity import cannot be resolved", () => {
+    const fixture = mkdtempSync(resolve(tmpdir(), "dicheckin-public-release-"));
+    mkdirSync(resolve(fixture, "contracts"));
+    writeFileSync(
+      resolve(fixture, "contracts", "DICheckIn.sol"),
+      '// SPDX-License-Identifier: MIT\npragma solidity ^0.8.24;\nimport "missing.sol";\ncontract DICheckIn {}\n'
+    );
+    expect(() => compileDICheckIn(fixture)).toThrow(/missing\.sol/);
   });
 
   it("starts on the configured boundary and prevents duplicate daily check-ins", async () => {
