@@ -1,0 +1,24 @@
+{
+  "network": "BNB Smart Chain Mainnet",
+  "chainId": 56,
+  "contractName": "DICheckIn",
+  "contractAddress": "0xC361Eb6E91abD289c912BfCABc644076680659B6",
+  "deploymentTransaction": "0x570e91fbd46ecbf7fd896fbd0c5e90c202d859c4fb54c8b697a70243f7a63eaf",
+  "deployerAtDeployment": "0x8FdA5DC1e8a660E9ED6A8f74AB586e8636f06Fc7",
+  "ownerAtDeployment": "0x8FdA5DC1e8a660E9ED6A8f74AB586e8636f06Fc7",
+  "startTime": 1786118400,
+  "startTimeIso": "2026-08-07T16:00:00.000Z",
+  "startTimeAsiaShanghai": "2026-08-08T00:00:00+08:00",
+  "campaignDays": 365,
+  "requiredStreak": 30,
+  "compilerVersion": "v0.8.31+commit.fd3a2265",
+  "evmVersion": "shanghai",
+  "optimizer": {
+    "enabled": true,
+    "runs": 200
+  },
+  "sourceSha256": "9dd95750769532377aec39e84cb3f03fc6fda847c8e9bc9e19e87ad889ab7bd3",
+  "standardInputSha256": "843e054f74b53c5bafebedadb3a2ff5c97155ac8942cef738d9b90274729989c",
+  "bscScanVerification": "Source Code Verified - Exact Match",
+  "explorerUrl": "https://bscscan.com/address/0xC361Eb6E91abD289c912BfCABc644076680659B6#code"
+}

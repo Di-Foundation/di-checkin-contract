@@ -46,7 +46,7 @@ describe("DICheckIn public release", () => {
     await provider.send("evm_setTime", [startTime * 1000]);
     await provider.send("evm_mine", []);
     expect(await contract.currentDay()).toBe(1n);
-    await (await contract.connect(user).checkIn()).wait();
+    await (await contract.connect(user).checkIn({ gasLimit: 150_000 })).wait();
     await expect(contract.connect(user).checkIn.staticCall()).rejects.toThrow();
     const state = await contract.users(await user.getAddress());
     expect(state.totalCheckIns).toBe(1n);
@@ -58,7 +58,7 @@ describe("DICheckIn public release", () => {
       const timestamp = startTime + (day - 1) * 86400 + 3600;
       await provider.send("evm_setTime", [timestamp * 1000]);
       await provider.send("evm_mine", []);
-      await (await contract.connect(user).checkIn()).wait();
+      await (await contract.connect(user).checkIn({ gasLimit: 150_000 })).wait();
     }
     const state = await contract.users(await user.getAddress());
     expect(state.totalCheckIns).toBe(30n);
