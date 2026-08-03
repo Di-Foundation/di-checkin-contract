@@ -34,7 +34,12 @@ describe("DICheckIn public release", () => {
 
   it("uses the audited source and exact compiler settings", () => {
     const source = readFileSync(resolve(root, "contracts", "DICheckIn.sol"), "utf8");
+    const standardInput = readFileSync(
+      resolve(root, "artifacts", "bscscan", "standard-input.json"),
+      "utf8"
+    );
     expect(sha256Hex(source)).toBe("9dd95750769532377aec39e84cb3f03fc6fda847c8e9bc9e19e87ad889ab7bd3");
+    expect(sha256Hex(standardInput)).toBe("843e054f74b53c5bafebedadb3a2ff5c97155ac8942cef738d9b90274729989c");
     expect(compiled.compilerVersion).toBe("0.8.31+commit.fd3a2265.Emscripten.clang");
     expect(compiled.settings).toEqual({
       evmVersion: "shanghai",
