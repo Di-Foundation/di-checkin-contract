@@ -14,6 +14,12 @@ export function sha256Hex(value: string): string {
   return createHash("sha256").update(value).digest("hex");
 }
 
+export function assertCompilerVersion(actual: string): void {
+  if (actual !== expectedCompiler) {
+    throw new Error(`Expected ${expectedCompiler}; found ${actual}`);
+  }
+}
+
 export function compileDICheckIn(projectRoot: string): {
   abi: InterfaceAbi;
   bytecode: string;
@@ -24,9 +30,7 @@ export function compileDICheckIn(projectRoot: string): {
     optimizer: { enabled: true; runs: 200 };
   };
 } {
-  if (solc.version() !== expectedCompiler) {
-    throw new Error(`Expected ${expectedCompiler}; found ${solc.version()}`);
-  }
+  assertCompilerVersion(solc.version());
 
   const settings = {
     evmVersion: "shanghai" as const,
