@@ -1,0 +1,23 @@
+{
+  "name": "@di-foundation/checkin-contract",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "5.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.0.0",
+    "@vitest/coverage-v8": "^3.2.4",
+    "ethers": "^6.15.0",
+    "ganache": "^7.9.2",
+    "solc": "0.8.31",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  }
+}
