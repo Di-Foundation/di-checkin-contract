@@ -1,8 +1,26 @@
 # DI 签到合约
 
-`DICheckIn` 是 DI Foundation 部署在 BNB Smart Chain 上的不可升级日签到合约。它记录每个钱包每日一次签到、当前连续签到、历史最长连续签到、累计签到次数，以及是否达到连续签到目标。
+[English](./README.md) · [简体中文](./README_CN.md)
+
+DI 签到是 DI 生态的链上参与模块。`DICheckIn` 智能合约在 BNB Smart Chain 上记录钱包每日签到，为参与活动提供可公开验证的记录。
+
+本仓库公开合约源码、主网部署信息、编译输入与自动化测试，供读者和集成方了解签到规则、检查合约实现并复现构建。
+
+## 运行机制
+
+- 每个钱包在每个活动日只能记录一次签到。
+- 合约记录累计签到次数、当前连续签到、历史最长连续签到，以及每日整体签到量。
+- 钱包达到配置的连续签到目标后，合约会永久记录其链上达标状态。
 
 活动积分、奖励、排行榜和其他任务均在链下计算；本合约不包含代币、收款、提款、代理或升级功能。
+
+## 仓库内容
+
+- [合约源码](./contracts/DICheckIn.sol)
+- [主网部署信息](./deployments/bsc-mainnet.json)
+- [编译输入](./artifacts/bscscan/standard-input.json)
+- [合约测试](./test/public-release.test.ts)
+- [安全政策](./SECURITY.md)
 
 ## BSC 主网部署
 
@@ -48,3 +66,7 @@ npm run test:coverage
 Owner 只能暂停或恢复新签到，以及执行两步式所有权转移。暂停不会改变已有签到记录。合约禁止放弃所有权，避免暂停后无人能够恢复。
 
 安全问题请阅读 [SECURITY.md](SECURITY.md)，许可证见 [LICENSE](LICENSE)。
+
+## 官方链接
+
+[DI 官网](https://di.xyz/) · [白皮书](https://whitepaper.di.xyz/zh/) · [白皮书源文档](https://github.com/Di-Foundation/di-whitepaper)

@@ -1,8 +1,26 @@
 # DI Check-In Contract
 
-`DICheckIn` is DI Foundation's non-upgradeable daily check-in contract on BNB Smart Chain. It records one direct wallet check-in per campaign day, current and longest streaks, aggregate activity, and whether a wallet has reached the configured consecutive-day target.
+[English](./README.md) · [简体中文](./README_CN.md)
+
+DI Check-In is the on-chain participation component of the DI ecosystem. Its `DICheckIn` smart contract records daily wallet check-ins on BNB Smart Chain, providing publicly verifiable participation records.
+
+This repository publishes the contract source, mainnet deployment details, compiler input and automated tests. It allows readers and integrators to inspect the check-in rules and reproduce the contract build.
+
+## How it works
+
+- Each wallet can record one check-in per campaign day.
+- The contract tracks total check-ins, the current and longest consecutive streaks, and daily aggregate activity.
+- Reaching the configured consecutive-day target permanently sets the wallet's on-chain qualification flag.
 
 Points, rewards, rankings, and other campaign tasks are intentionally off-chain. The contract has no token, payment, withdrawal, proxy, or upgrade functionality.
+
+## Repository contents
+
+- [Contract source](./contracts/DICheckIn.sol)
+- [Mainnet deployment details](./deployments/bsc-mainnet.json)
+- [Compiler input](./artifacts/bscscan/standard-input.json)
+- [Contract tests](./test/public-release.test.ts)
+- [Security policy](./SECURITY.md)
 
 ## BSC mainnet deployment
 
@@ -52,3 +70,7 @@ See [SECURITY.md](SECURITY.md) for vulnerability reporting.
 ## License
 
 MIT. See [LICENSE](LICENSE).
+
+## Official links
+
+[DI website](https://di.xyz/) · [Whitepaper](https://whitepaper.di.xyz/) · [Whitepaper source](https://github.com/Di-Foundation/di-whitepaper)
